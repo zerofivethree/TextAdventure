@@ -1,0 +1,63 @@
+Path 1:
+
+Starting area
+	- eat grass x3
+	- look tree to see GUITAR
+	- get GUITAR
+	- shred guitar to attract the attention of PASSING ROCKSTAR
+	- use limo
+Concert arena
+	- go stage
+	- shred guitar
+	- surf crowd
+	- view inventory to find ACID someone slipped in there during the crowdsurf
+	- use acid
+Horseland
+	- approach FLOATING PINK BUNNY
+	- look space to see SOLARFLARE
+	- go solarflare to see the skies opening I'm almost thEeEeEeEere
+	- burn up on entry and DIE to end trip.
+	- "Don't do drugs, kids."
+Backstage
+	- talk band to get in ARGUMENT
+	- break up band to quit the rock n roll lifestyle
+	- THE END
+
+Path 2:
+	Starting area
+	- eat grass x3
+	- look tree to see GUITAR
+	- get GUITAR
+	- shred guitar to attract the attention of PASSING ROCKSTAR
+	- use limo
+Concert arena
+	- go stage
+	- shred guitar
+	- do SOLO to whammy a slamming riffstyle jamsolo to the MAX extreme STAR POWER
+	- segue to...
+Tour van
+	- look to inspect the intrepid dirtiness of the tour van
+	- stand to experience wicked hangover
+	- do introspection to engage in monologue on rock n roll lifestyle
+	- leave van
+Starting Area
+	- eat grass
+	- THE END
+
+Path 3:
+	Starting area
+	- eat grass x3
+	- look tree to see GUITAR
+	- get GUITAR
+	- shred guitar to attract the attention of PASSING ROCKSTAR
+	- use limo
+Concert arena
+	- go stage
+	- shred guitar
+	- do SOLO to whammy a slamming riffstyle jamsolo to the MAX extreme STAR POWER
+	- segue to...
+Tour van
+	- look phone to find number for ROLLING STONE
+	- call ROLLING STONE
+	- answer yes to cover photoshoot
+	- THE END
