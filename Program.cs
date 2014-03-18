@@ -1,16 +1,14 @@
 ﻿/* Joseph Dye
- * 14 March 2014
+ * 17 March 2014
  * 
  * HORSE SIMULATOR 2014
  * 
- * Logic:
- * Current = description of current scene
- * Player command will be sent to switch, which will run the appropriate function and set a new current
- * It will also set a numeric flag indicating the current scene.
- * This will be checked when interacting with the environment to ensure continuity.
+ * I used the basic structure of an open-source text adventure I found online to help with some of the logic.
+ * Horse ASCII art from http://www.asciiworld.com/-Horses-.html
+ * Everything else is MINE!
  * 
- * I used the basic structure of an open-source text adventure I found online to help with some of the logic,
- * but everything else is MINE!
+ * KNOWN BUGS:
+ * - Loading saved games is pretty buggy.
  */
 
 using System;
@@ -23,20 +21,24 @@ namespace TextAdventure
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            Console.WriteLine("");
+            Console.WriteLine("     >>\\.");
+            Console.WriteLine("    /_  )`.");
+            Console.WriteLine("   /  _)`^)`.   _.---. _");
+            Console.WriteLine("  (_,' \\  `^-)\"\"      `.\\");
+            Console.WriteLine("        |              | \\");
+            Console.WriteLine("        \\              / |");
+            Console.WriteLine("       / \\  /.___.'\\  (\\ (_");
+            Console.WriteLine("      < ,\"||     \\ |`. \\`-'");
+            Console.WriteLine("       \\ ()      )|  )/");
+            Console.WriteLine("       |_>|>     /_] //");
+            Console.WriteLine("         /_]        /_]\");");
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("                 Joseph Dye presents");
-            Console.WriteLine("             Joseph Dye's Horse Simulator 2014 ");
-            Console.WriteLine("                a Joseph Dye game ");
+            Console.WriteLine("             Horse Simulator 2014");
+            Console.WriteLine("                by Joseph Dye");
             Console.ReadLine();
             Console.Clear();
             BeginGame();
@@ -45,7 +47,7 @@ namespace TextAdventure
 
         public static void BeginGame()
         {
-            Console.WriteLine("Basic commands: look, use, go, eat, call, argue, introspect.");
+            Console.WriteLine("Basic commands: look, use, go, get, enter, eat, call, argue, introspect.");
             Console.WriteLine("Press enter to begin, type \"load\" to load a saved game, or type \"quit\" to quit");
             string beginGame = Console.ReadLine();
             beginGame = beginGame.ToLower();

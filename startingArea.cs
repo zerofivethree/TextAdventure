@@ -38,12 +38,13 @@ namespace TextAdventure
                 }
                 else if (action == "introspect")
                 {
-                    Console.WriteLine("You guess that your life is pretty alright. I mean, lots of horses are worse off than you. You did just kind of get over a NASTY BREAKUP with a filly, but life goes on.");
-                    Console.WriteLine("You are reminded of one of your favorite songs by the band Horse Talking Heads, \'Once in a Horse Lifetime.\' You really wish you could " +
+                    Console.WriteLine("You guess that your life is pretty alright. I mean, lots of horses are worse off than you. You did just kind of get over a NASTY BREAKUP with a filly, but life goes on. "
+                    + "You are reminded of one of your favorite songs by the band Horse Talking Heads, \'Once in a Horse Lifetime.\' You really wish you could " +
                         "play guitar like Horse David Byrne, but you don't have any money to buy one.");
                 }
                 else if (action == "eat grass" || action == "use grass")
                 {
+                    // Grass must be eaten three times in order for GUITAR to become obtainable
                     grassCounter++;
                     if (grassCounter == 1)
                     {
@@ -56,13 +57,14 @@ namespace TextAdventure
                     }
                     else if (grassCounter == 3)
                     {
-                        HorseStats.setTrue(HorseStats.ateGrass);
+                        HorseStats.ateGrass = true;
                         Console.WriteLine("You nibble at some reasonable-tasting blades. You're getting pretty full.");
                         Console.WriteLine("In the distance, you think you see the sun reflecting off of something...");
                     }
                     else
                     {
-                        Console.WriteLine("You're way too full to eat any more grass!");
+                        Console.WriteLine("You're way too full to eat any more grass! But something shiny in the distance");
+                        Console.WriteLine("catches your eye.");
                     }
 
                 }
@@ -75,18 +77,20 @@ namespace TextAdventure
                     }
                     else
                     {
-                        Console.WriteLine("What's that? You think you see an ELECTRIC GUITAR caught in the branches.");
+                        Console.WriteLine("What's that? You think you see an electric GUITAR caught in the branches.");
                     }
                 }
-                else if (action == "get guitar" || action == "get electric guitar")
+                else if (HorseStats.ateGrass == true && (action == "get guitar" || action == "get electric guitar"))
                 {
-                    Console.WriteLine("You knock the ELECTRIC GUITAR out of the tree and pick it up.");
+                    // Getting the guitar adds it to your inventory, as will getting anything else obtainable in this game.
+                    Console.WriteLine("You knock the electric GUITAR out of the tree and pick it up.");
                     Console.WriteLine("Your hooves are surprisingly dextrous at plucking the strings.");
-                    HorseStats.hasGuitar = true;
+                    Inventory.addItems("Electric GUITAR");
                 }
                 else if (action == "play guitar" || action == "strum guitar" || action == "use guitar")
                 {
-                    if (HorseStats.hasGuitar == true)
+                    int index = Inventory.inventory.FindIndex(x => x.StartsWith("Electric GUITAR"));
+                    if (index >= 0)
                     {
                         Console.WriteLine("This axe is too badass to do that! The only way to use this");
                         Console.WriteLine("bad boy is to SHRED it.");
@@ -99,14 +103,15 @@ namespace TextAdventure
                 }
                 else if (action == "shred guitar")
                 {
-                    if (HorseStats.hasGuitar == true)
+                    int index = Inventory.inventory.FindIndex(x => x.StartsWith("Electric GUITAR"));
+                    if (index >= 0)
                     {
                         HorseStats.shreddedGuitar = true;
                         Console.WriteLine("You assume the powerstance and shred some wicked screamin' licks!");
                         Console.WriteLine("If this game had audio, it would sound really kickass.");
                         Console.WriteLine();
                         Console.WriteLine("You see a LIMO pull up in the distance.");
-                        Console.WriteLine("All this shredding appears to have attracted the attention of a PASSING ROCKSTAR.");
+                        Console.WriteLine("All this shredding appears to have attracted the attention of a passing ROCKSTAR.");
                     }
                     else
                     {
@@ -124,16 +129,20 @@ namespace TextAdventure
                         Console.WriteLine("You gallop over to the limo. \"Hey!\" the rockstar hollers at you, \"I want YOU on tour with me.\"");
                         Console.WriteLine("The door of the limo opens and he motions for you to get in. \"Whaddya say, horse dude?\"");
                     }
+                    else if (HorseStats.canEnterLimo == true)
+                    {
+                        Console.Write("The ROCKSTAR waves at you to get in. \"Yo, dude, just ENTER LIMO, mmkay?\"");
+                    }
                     else
                     {
                         Console.WriteLine("You have no idea what you're talking about!");
                     }
                 }
-                else if (HorseStats.canEnterLimo == true && (action == "enter limo" || action == "go limo"))
+                else if (action == "enter limo" || action == "yes")
                 {
                     if (HorseStats.canEnterLimo == true)
                     {
-                        Console.WriteLine("You climb into the limo next to the FAMOUS ROCKSTAR and several SUPERMODELS.");
+                        Console.WriteLine("You climb into the limo next to the famous ROCKSTAR and several SUPERMODELS.");
                         Console.WriteLine("It peels outta there and you're on the road to stardom!");
                         Console.WriteLine();
                         concertArea.backstage();
@@ -149,15 +158,22 @@ namespace TextAdventure
                 }
                 else if (action == "help")
                 {
-                    Console.WriteLine("Basic commands: look, use, go, eat, call, argue, introspect.");
+                    Console.WriteLine("Basic commands: look, use, go, get, enter, eat, call, argue, introspect, inventory.");
                 }
-                else if (action == "save")
+                else if (action == "save" || action == "save game")
                 {
                     int area = 1;
                     Dictionary<int, bool> gameState = new Dictionary<int, bool>();
-                    gameState[0] = HorseStats.hasGuitar;
+                    gameState[0] = HorseStats.ateGrass;
                     gameState[1] = HorseStats.shreddedGuitar;
                     gameState[2] = HorseStats.canEnterLimo;
+                    gameState[3] = HorseStats.hasBeer;
+                    gameState[4] = HorseStats.canShredSolo;
+                    gameState[5] = HorseStats.canSurf;
+                    gameState[6] = HorseStats.isSurfing;
+                    gameState[7] = HorseStats.hasAcid;
+                    gameState[8] = HorseStats.drankBeer;
+                    gameState[9] = HorseStats.hasPaper;
                     fileIO.saveGame(area, gameState);
                     Console.WriteLine("Game has been saved.");
                 }
@@ -165,6 +181,10 @@ namespace TextAdventure
                 {
                     Console.WriteLine("Bye.");
                     break;
+                }
+                else if (action == "view inventory" || action == "inventory")
+                {
+                    Inventory.viewInventory();
                 }
                 else
                 {
